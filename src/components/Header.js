@@ -1,17 +1,33 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+
+
+
 
 const Header = () => {
 
+    
+
     return(
-        <div>
+        <header>
+            <Box 
+                sx={{
+                    bgcolor: "black",
+                    padding: "5rem 0",
+                    textAlign: 'center'
+                }}>
+                
+                <Container >
+                    <Typography variant="h1" component="h1">
+                    The ProCATination Game
+                    </Typography>
+                </Container>
 
-            <Typography variant="h1" component="h1" m={3}>
-            The ProCATination Game
-            </Typography>
+            </Box >
 
-        </div>
+        </header>
     )
 }
 
