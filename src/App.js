@@ -9,17 +9,17 @@ import Header from './components/Header';
 import Start from './components/Start';
 
 //Material UI imports
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-/* import { ThemeProvider } from '@emotion/react'; */
+import { createTheme, ThemeProvider, responsiveFontSizes, useTheme } from '@mui/material/styles';
 import CssBaseline from "@mui/material/CssBaseline";
-import { yellow } from "@mui/material/colors"
+import { yellow } from "@mui/material/colors";
+import { Box } from '@mui/system';
 
 const primaryColor = "#000000";
 const secondaryColor = "#ffffff";
 const tertiaryColor = yellow; //#ffd600 
 
 const defaultTheme = createTheme();
-const customTheme = createTheme({
+let customTheme = createTheme({
   palette: {
     primary: {
       main: primaryColor ,
@@ -37,12 +37,15 @@ const customTheme = createTheme({
     
   },
   typography: {
+  
     h1: {
         color: tertiaryColor['A700']
-    }
-  }
-});
+    },
 
+  },
+  
+});
+customTheme = responsiveFontSizes(customTheme)
 
 function App() {
 
@@ -50,6 +53,8 @@ function App() {
   const [userChoice, setUserChoice] = useState("");
   const [userScore, setUserScore] = useState(0);
   const [botScore, setBotScore] = useState(0);
+
+
 
   return (
     
@@ -62,11 +67,18 @@ function App() {
               
           <Header />
 
+          <Box 
+            sx={{ 
+              padding: "5rem",
+              bgcolor: customTheme.palette.tertiary.main, 
+              height: "70vh"
+          }}>
             <Routes>
 
+            
               <Route exact path="/" element={
                 <Start statement={statement} setStatement={setStatement}/>  
-              }/>
+              } />
 
               <Route exact path="/play" element={
                 <Play 
@@ -89,8 +101,9 @@ function App() {
                   setBotScore={setBotScore}
                 />} 
               />
-
+              
               </Routes>
+              </Box>
         </div>
       </BrowserRouter>
     </ThemeProvider>

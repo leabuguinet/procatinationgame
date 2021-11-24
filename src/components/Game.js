@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const Game = ({ userChoice, userScore, setUserScore, botScore, setBotScore }) => {
 
-    
 
     //Definition of the bot game choice
     const [botChoice, setBotChoice] = useState("");

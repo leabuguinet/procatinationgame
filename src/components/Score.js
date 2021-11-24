@@ -1,12 +1,18 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 
 const Score = ({userScore, botScore}) => {
 
     return(
-        <div>
-            <h1>Your Score : {userScore}</h1>
-            <h1>Bot Score : {botScore}</h1>
-        </div>
+        <>
+        <Typography variant="h4">
+            Your Score : {userScore}
+        </Typography>
+
+        <Typography variant="h4">
+            Cat Score : {botScore}
+        </Typography>
+        </>
     )
 }
 
