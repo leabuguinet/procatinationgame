@@ -5,13 +5,16 @@ const Score = ({userScore, botScore}) => {
 
     return(
         <>
-        <Typography variant="h4">
-            Your Score : {userScore}
+{/*         <Typography variant="h4" component="h4">
+            Score:
+        </Typography>
+ */}
+        
+        <Typography variant="h4" component="h4">
+            You {userScore} - {botScore} Cat
         </Typography>
 
-        <Typography variant="h4">
-            Cat Score : {botScore}
-        </Typography>
+
         </>
     )
 }

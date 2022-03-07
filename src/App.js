@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Game from './components/Game';
 import Play from './components/Play';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Start from './components/Start';
 
 //Material UI imports
@@ -30,21 +31,39 @@ let customTheme = createTheme({
     tertiary: defaultTheme.palette.augmentColor({
       color: { main: tertiaryColor['A700']},
       name: "tertiary"
-    })
+    },),
+    action: {
+      active: tertiaryColor['A700'],
+    }
     /* background: {
       default: tertiaryColor['A700'],
     }, */
     
   },
   typography: {
-  
-    h1: {
-        color: tertiaryColor['A700']
+    h2: {
+        color: tertiaryColor['A700'], 
     },
-
+    h6: {
+      color: tertiaryColor['A700'], 
+    },
+    
+    
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      mdplus: 900,
+      lg: 1300,
+      xl: 1536,
+    },
   },
   
-});
+  
+},);
+
 customTheme = responsiveFontSizes(customTheme)
 
 function App() {
@@ -53,6 +72,7 @@ function App() {
   const [userChoice, setUserChoice] = useState("");
   const [userScore, setUserScore] = useState(0);
   const [botScore, setBotScore] = useState(0);
+  const [botChoice, setBotChoice] = useState("");
 
 
 
@@ -69,10 +89,13 @@ function App() {
 
           <Box 
             sx={{ 
-              padding: "5rem",
+              paddingTop: "2rem",
               bgcolor: customTheme.palette.tertiary.main, 
-              height: "70vh"
+              height: '80vh',
+              paddingBottom: '5rem',
+           
           }}>
+
             <Routes>
 
             
@@ -84,11 +107,14 @@ function App() {
                 <Play 
                   userChoice={userChoice} 
                   setUserChoice={setUserChoice} 
+                  botChoice={botChoice}
+                  setBotChoice={setBotChoice}
                   statement={statement}
                   userScore={userScore} 
                   botScore={botScore}
                   setBotScore={setBotScore}
                   setUserScore={setUserScore}
+                 
                   />
               }/>
 
@@ -96,14 +122,22 @@ function App() {
                 <Game 
                   userChoice={userChoice} 
                   userScore={userScore} 
+                  botChoice={botChoice}
+                  setBotChoice={setBotChoice}
                   setUserScore={setUserScore} 
                   botScore={botScore} 
                   setBotScore={setBotScore}
+                  statement={statement}
+
                 />} 
               />
               
-              </Routes>
-              </Box>
+            </Routes>
+          
+          </Box>
+
+          <Footer />
+          
         </div>
       </BrowserRouter>
     </ThemeProvider>

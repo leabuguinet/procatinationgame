@@ -1,85 +1,174 @@
 import { React, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import HandCard from './HandCard';
+import { Box } from '@mui/system';
+import Score from './Score';
+import { useTheme } from '@mui/system';
+import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
+import Container from '@mui/material/Container';
 
-
-
-const Game = ({ userChoice, userScore, setUserScore, botScore, setBotScore }) => {
-
-
-    //Definition of the bot game choice
-    const [botChoice, setBotChoice] = useState("");
-
-    const getBotChoice = () => {
-        const choices = ["rock", 'paper', 'scissors'];
-        setBotChoice(choices[Math.floor(Math.random() * 3)])
-    }
-
-    useEffect(() => {getBotChoice()}, []);
-
-    //Definition of the winner 
+const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBotScore, statement }) => {
+        
     const [tourResult, setTourResult] = useState("");
 
-    const getResult = () => {
-        if(userChoice === "rock" && botChoice === "paper"){
+    const theme = useTheme();
+
+    //const [counter, setCounter] = useState(3);
+
+    useEffect(() => {
+
+        if(userChoice === "rock" && botChoice === "paperpaw"){
             setTourResult('lose');
-            setBotScore(botScore + 1);
-        } else if(userChoice === "rock" && botChoice === "scissors"){
-            setTourResult('win');
-            setUserScore(userScore + 1);
-        } else if(userChoice === "paper" && botChoice === "rock"){
+            setBotScore((botScore) + 1)
+        } else if(userChoice === "rock" && botChoice === "scissorspaw"){
             setTourResult('win');
             setUserScore(userScore + 1)
-        } else if(userChoice === "paper" && botChoice === "scissors"){
+        } else if(userChoice === "paper" && botChoice === "rockpaw"){
+            setTourResult('win');
+            setUserScore(userScore + 1)
+        } else if(userChoice === "paper" && botChoice === "scissorspaw"){
             setTourResult('lose');
-            setBotScore(botScore + 1);
-        } else if(userChoice === "scissors" && botChoice === "rock"){
+            setBotScore((botScore) + 1)
+        } else if(userChoice === "scissors" && botChoice === "rockpaw"){
             setTourResult('lose');
-            setBotScore(botScore + 1);
-        } else if(userChoice === "scissors" && botChoice === "paper"){
+            setBotScore((botScore) + 1)
+        } else if(userChoice === "scissors" && botChoice === "paperpaw"){
             setTourResult('win');
             setUserScore(userScore + 1)
         } else {
             setTourResult('draw')
         }
+    }, [userChoice, botChoice])
 
-    }
-        
-    useEffect(() => {getResult()}, [botChoice]);
+
+    /* Return(
+        <div>
+            {userChoice}
+            {botChoice}
+            {tourResult}
+            {userScore}
+            {botScore}
+
+
+            <Link to="/play">
+                        Play Again
+                        </Link>
+        </div>
+    ) */
+    //Counter 3...2...1 
+    /* const [counter, setCounter] = useState(3);
+
+    useEffect(() => {
+        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    }, [counter])
 
     
+    //Update of the Score
+
+
+    useEffect(() => {updateScore(tourResult, userScore, botScore, setUserScore, setBotScore)}, [tourResult, userScore, botScore, setUserScore, setBotScore]);
+    */
+
+    //Management of images link :
+
+
+
     if(userScore === 3){
-        
+    
+
         return (
+
             
-            <p>c'est fini vous avez gagné</p>
+            
+            <Container sx={{
+                padding: "3rem 0",
+                justifyContent: 'center',
+                textAlign: 'center',
+            }}>
+
+                <Typography variant="h4" component="h4" align="center">
+                    The cat has let you win the game!
+                </Typography>
+                <Typography variant="h4" component="h4" align="center">
+                    You have the right to procastinate and not to: {statement}!
+                </Typography>
+
+                <Link to="/">
+                    <Button variant="contained" size="large" sx={{
+                        marginTop: '2rem',
+                        }}
+                        onClick={() => setBotScore(botScore === 0)}
+                    >Play again
+                    </Button>
+                </Link>
+
+            </Container>
         )
 
     } else if(botScore === 3) {
         
         return (
+
+            <Container sx={{
+                padding: "3rem 0",
+                justifyContent: 'center',
+                textAlign: 'center',
+            }}>
             
-            <p>c'est fini vous avez perdu</p>
+                <Typography variant="h4" component="h4" align="center">
+                    The cat has defeated you.
+                </Typography>
+                <Typography variant="h4" component="h4" align="center">
+                    You have to: {statement}. 
+                </Typography>
+
+                <Link to="/" >
+                    <Button variant="contained" size="large" sx={{
+                        marginTop: '2rem',
+                        }}
+                        onClick={() => setBotScore(botScore === 0)}
+                    >Play again
+                    </Button>
+                </Link>
+
+            </Container>
         )
     
     } else {
 
         return (
+                
+            <Box display="flex" flexDirection="column" alignItems="center" sx={{
+                bgcolor: theme.palette.tertiary.main,
+                paddingBottom: '3rem',
+            }}>
+            
+                {tourResult === "win" && <h3>You win!</h3>}
+                {tourResult === "lose" && <h3>You lose!</h3>}
+                {tourResult === "draw" && <h3>Draw!</h3>}
 
-            <div className="game">
-            my choice:{userChoice} <br />
-            House choice:{botChoice} <br />
-        
-            Result:
-            {tourResult === "win" && <h2>You Win</h2>}
-            {tourResult === "lose" && <h2>You lose</h2>}
-            {tourResult === "draw" && <h2>Draw</h2>}
-        
-            <Link to="/play" onClick={() => setBotChoice()}>
-            Play Again
-            </Link>
-        </div>
+                <Score userScore={userScore} botScore={botScore}/>
+                
+                <HandCard dataId={userChoice} />
+                <HandCard dataId={botChoice} />
+
+                <Link to="/play">
+                    <Button variant="contained" size="large" sx={{
+                        marginTop: '2rem',
+                        }}
+                    >Play again
+                    </Button>
+
+                </Link>
+
+                
+            
+            </Box>
+
+           
         )
-    }
+    } 
    
 };
 

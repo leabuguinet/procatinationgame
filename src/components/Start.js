@@ -19,7 +19,6 @@ const useStyles = makeStyles({
 
 const Start = ({statement, setStatement}) => {
 
-    const classes = useStyles();
     const theme = useTheme();
 
     const [startGame, setStartGame] = useState(false);

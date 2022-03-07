@@ -3,55 +3,72 @@ import { Link } from "react-router-dom";
 import Score from './Score';
 import Container from '@mui/material/Container';
 import { Box } from '@mui/system';
-import rockhand from '../assets/images/rockhand.png'
+import HandCard from './HandCard';
+import { Typography } from '@mui/material';
+import { useTheme } from '@mui/system';
+
+//images
+import rockhand from '../assets/images/rockhand.png';
+import paperhand from '../assets/images/paperhand.png';
+import scissorshand from '../assets/images/scissorshand.png';
+import { useEffect } from 'react';
 
 
-const Play = ({setUserChoice, statement, userScore, botScore}) => {
+const Play = ({setUserChoice, statement, userScore, botScore, setBotChoice, botChoice}) => {
+
+    const theme = useTheme();
+
+    //Get the bot choices once
+    useEffect(() => {
+        const choices = ["rockpaw", 'paperpaw', 'scissorspaw'];
+        setBotChoice(choices[Math.floor(Math.random() * 3)])
+    })
+   
 
     return(
-    
-        
-    <Box>
+
+    <Box sx={{
+            bgcolor: theme.palette.tertiary.main,
+            paddingBottom: 4,
+            display: 'flex', 
+    }}>
 
         <Container>
-            <Score userScore={userScore} botScore={botScore}/>
-        </Container>
-        <h1>{statement}</h1>
-
-        <Link to="/game">
-        <Box
-            component="div"
+            
+            <Box 
             sx={{
-            height: 800,
-            width: 800,
-            maxHeight: { xs: 119, md: 151, lg: 268 },
-            maxWidth: { xs: 350, md: 450, lg: 800 },
-            backgroundImage: `url(${rockhand})`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            }}
-            /* alt="Rock sign hand"
-            src={rockhand}
- */
-            data-id="rock"
-            onClick={(e) => setUserChoice(e.target.dataset.id)}
-        />
+                textalign: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: "center", 
+                padding: 0,
+            }}>
+                <Score userScore={userScore} botScore={botScore}/>
 
-        </Link>
-        <Link to="/game">
-          <div
-            data-id="paper"
-            onClick={(e) => setUserChoice(e.target.dataset.id)}
-            className=""
-          >Scissors</div>
-        </Link>
-        <Link to="/game">
-          <div
-            data-id="scissors"
-            onClick={(e) => setUserChoice(e.target.dataset.id)}
-            className=""
-          >Rock</div>
-        </Link>
+                <Typography component="p" variant='h5' 
+                    sx={{
+                        padding: '1.5rem'
+                }}>
+                    Choose your hand:
+                </Typography>
+
+                <Link to="/game">
+                    <HandCard setUserChoice={setUserChoice} imgSrc={rockhand} dataId="rock" />
+                </Link>
+
+                <Link to="/game">
+                    <HandCard setUserChoice={setUserChoice} imgSrc={paperhand} dataId="paper" />
+                </Link>
+                
+                <Link to="/game">
+                    <HandCard setUserChoice={setUserChoice} imgSrc={scissorshand} dataId="scissors"/>
+                </Link>
+
+            </Box>
+
+            
+        </Container>
+
       
     </Box>
 
