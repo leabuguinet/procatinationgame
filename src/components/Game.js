@@ -72,15 +72,11 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
 
     //Management of images link :
 
-
-
     if(userScore === 3){
-    
 
+    
         return (
 
-            
-            
             <Container sx={{
                 padding: "3rem 0",
                 justifyContent: 'center',
@@ -98,7 +94,11 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
                     <Button variant="contained" size="large" sx={{
                         marginTop: '2rem',
                         }}
-                        onClick={() => setBotScore(botScore === 0)}
+                        onClick={() => {
+                            setBotScore(botScore - botScore);
+                            setUserScore(userScore - 3);
+                        }}
+                        
                     >Play again
                     </Button>
                 </Link>
@@ -108,6 +108,8 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
 
     } else if(botScore === 3) {
         
+ 
+
         return (
 
             <Container sx={{
@@ -127,7 +129,12 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
                     <Button variant="contained" size="large" sx={{
                         marginTop: '2rem',
                         }}
-                        onClick={() => setBotScore(botScore === 0)}
+                        onClick={() => {
+                            setBotScore(botScore - 3);
+                            setUserScore(userScore - userScore);
+                        }}
+                        
+
                     >Play again
                     </Button>
                 </Link>
@@ -153,9 +160,11 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
                 <HandCard dataId={userChoice} />
                 <HandCard dataId={botChoice} />
 
-                <Link to="/play">
+                <Link to="/play" style={{textDecoration: 'none'}}>
                     <Button variant="contained" size="large" sx={{
                         marginTop: '2rem',
+                        textDecoration: 'none',
+                      
                         }}
                     >Play again
                     </Button>

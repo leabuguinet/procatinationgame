@@ -119,7 +119,7 @@ const HandCard = ({ setUserChoice, dataId }) => {
             /* maxHeight: { xs: 119, md: 151, lg: 201 },
             maxWidth: { xs: 350, md: 450, lg: "50%" }, */
             backgroundImage: `url(${imgSrc})`,
-            backgroundSize: 'contain',
+            backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             marginBottom: 1,

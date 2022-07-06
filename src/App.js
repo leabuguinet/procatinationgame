@@ -100,7 +100,15 @@ function App() {
 
             
               <Route exact path="/" element={
-                <Start statement={statement} setStatement={setStatement}/>  
+                <Start 
+                  statement={statement} 
+                  setStatement={setStatement}
+                  userScore={userScore} 
+                  botScore={botScore}
+                  setBotScore={setBotScore}
+                  setUserScore={setUserScore}
+                  
+                  />  
               } />
 
               <Route exact path="/play" element={

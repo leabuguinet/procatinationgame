@@ -13,8 +13,12 @@ const StartButton = (startGame) => {
     } else {
         return(
 
-            <Link to="/play">
-                    <Button variant="contained" size="large">Play</Button>
+            <Link to="/play" style={{textDecoration: 'none'}}>
+                    <Button variant="contained" size="large" sx={{
+                    
+                        textDecoration: 'none',
+                      
+                        }}>Play</Button>
             </Link>
      
         )

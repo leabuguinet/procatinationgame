@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -17,8 +17,9 @@ const useStyles = makeStyles({
     }
 })
 
-const Start = ({statement, setStatement}) => {
+const Start = ({statement, setStatement, userScore, setUserScore, botScore, setBotScore}) => {
 
+ 
     const theme = useTheme();
 
     const [startGame, setStartGame] = useState(false);
