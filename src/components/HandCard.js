@@ -12,7 +12,7 @@ import rockpaw from '../assets/images/rockpaw.png';
 import paperpaw from '../assets/images/paperpaw.png';
 import scissorspaw from '../assets/images/scissorspaw.png';
 
-const cardHover = keyframes`
+let cardHover = keyframes`
  0%,
  100% {
    -webkit-transform: translateY(0) rotate(0);
@@ -74,10 +74,15 @@ const cardHover = keyframes`
 
 
 
-const HandCard = ({ setUserChoice, dataId }) => {
+const HandCard = ({ setUserChoice, dataId, animation }) => {
 
     //Choice of the image source
     let imgSrc;
+    let animationCard;
+
+    if (animation === true){
+      animationCard = cardHover;
+    }
 
     switch(dataId){
         case 'rock': 
@@ -125,7 +130,7 @@ const HandCard = ({ setUserChoice, dataId }) => {
             marginBottom: 1,
 
             "&:hover": {
-                animation: `${cardHover} 1s ease`
+                animation: `${animationCard} 1s ease`
             },
 
 

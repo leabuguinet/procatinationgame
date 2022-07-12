@@ -4,18 +4,11 @@ import { Typography } from '@mui/material';
 const Score = ({userScore, botScore}) => {
 
     return(
-        <>
-{/*         <Typography variant="h4" component="h4">
-            Score:
-        </Typography>
- */}
         
         <Typography variant="h4" component="h4">
             You {userScore} - {botScore} Cat
         </Typography>
 
-
-        </>
     )
 }
 

@@ -5,17 +5,16 @@ import { Box } from '@mui/system';
 import Score from './Score';
 import { useTheme } from '@mui/system';
 import { Button } from '@mui/material';
-import { Typography } from '@mui/material';
-import Container from '@mui/material/Container';
+import Result from './Result';
 
 const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBotScore, statement }) => {
         
     const [tourResult, setTourResult] = useState("");
+    const [gameResult, setGameResult] = useState();
 
     const theme = useTheme();
 
-    //const [counter, setCounter] = useState(3);
-
+    //Management of the game and user/bot score
     useEffect(() => {
 
         if(userChoice === "rock" && botChoice === "paperpaw"){
@@ -41,107 +40,20 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
         }
     }, [userChoice, botChoice])
 
-
-    /* Return(
-        <div>
-            {userChoice}
-            {botChoice}
-            {tourResult}
-            {userScore}
-            {botScore}
-
-
-            <Link to="/play">
-                        Play Again
-                        </Link>
-        </div>
-    ) */
-    //Counter 3...2...1 
-    /* const [counter, setCounter] = useState(3);
-
+    //Give the winner of the game
     useEffect(() => {
-        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    }, [counter])
+        if(userScore === 3){
+            setGameResult(true);
+        } else if(botScore === 3){
+            setGameResult(false);
+        }
+    })
 
-    
-    //Update of the Score
 
+    if(userScore === 3 || botScore === 3 ){
 
-    useEffect(() => {updateScore(tourResult, userScore, botScore, setUserScore, setBotScore)}, [tourResult, userScore, botScore, setUserScore, setBotScore]);
-    */
+        return <Result userScore={userScore} setUserScore={setUserScore} botScore={botScore} setBotScore={setBotScore} statement={statement} gameResult={gameResult}/>
 
-    //Management of images link :
-
-    if(userScore === 3){
-
-    
-        return (
-
-            <Container sx={{
-                padding: "3rem 0",
-                justifyContent: 'center',
-                textAlign: 'center',
-            }}>
-
-                <Typography variant="h4" component="h4" align="center">
-                    The cat has let you win the game!
-                </Typography>
-                <Typography variant="h4" component="h4" align="center">
-                    You have the right to procastinate and not to: {statement}!
-                </Typography>
-
-                <Link to="/">
-                    <Button variant="contained" size="large" sx={{
-                        marginTop: '2rem',
-                        }}
-                        onClick={() => {
-                            setBotScore(botScore - botScore);
-                            setUserScore(userScore - 3);
-                        }}
-                        
-                    >Play again
-                    </Button>
-                </Link>
-
-            </Container>
-        )
-
-    } else if(botScore === 3) {
-        
- 
-
-        return (
-
-            <Container sx={{
-                padding: "3rem 0",
-                justifyContent: 'center',
-                textAlign: 'center',
-            }}>
-            
-                <Typography variant="h4" component="h4" align="center">
-                    The cat has defeated you.
-                </Typography>
-                <Typography variant="h4" component="h4" align="center">
-                    You have to: {statement}. 
-                </Typography>
-
-                <Link to="/" >
-                    <Button variant="contained" size="large" sx={{
-                        marginTop: '2rem',
-                        }}
-                        onClick={() => {
-                            setBotScore(botScore - 3);
-                            setUserScore(userScore - userScore);
-                        }}
-                        
-
-                    >Play again
-                    </Button>
-                </Link>
-
-            </Container>
-        )
-    
     } else {
 
         return (
@@ -157,28 +69,22 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
 
                 <Score userScore={userScore} botScore={botScore}/>
                 
-                <HandCard dataId={userChoice} />
-                <HandCard dataId={botChoice} />
+                <HandCard dataId={userChoice} animation={false}/>
+                <HandCard dataId={botChoice} animation={false}/>
 
                 <Link to="/play" style={{textDecoration: 'none'}}>
                     <Button variant="contained" size="large" sx={{
                         marginTop: '2rem',
                         textDecoration: 'none',
-                      
                         }}
-                    >Play again
+                    >
+                        Next round
                     </Button>
 
                 </Link>
-
-                
-            
             </Box>
-
-           
         )
     } 
-   
 };
 
 export default Game; 

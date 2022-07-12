@@ -53,15 +53,15 @@ const Play = ({setUserChoice, statement, userScore, botScore, setBotChoice, botC
                 </Typography>
 
                 <Link to="/game">
-                    <HandCard setUserChoice={setUserChoice} imgSrc={rockhand} dataId="rock" />
+                    <HandCard setUserChoice={setUserChoice} imgSrc={rockhand} dataId="rock"  animation={true} />
                 </Link>
 
                 <Link to="/game">
-                    <HandCard setUserChoice={setUserChoice} imgSrc={paperhand} dataId="paper" />
+                    <HandCard setUserChoice={setUserChoice} imgSrc={paperhand} dataId="paper" animation={true} />
                 </Link>
                 
                 <Link to="/game">
-                    <HandCard setUserChoice={setUserChoice} imgSrc={scissorshand} dataId="scissors"/>
+                    <HandCard setUserChoice={setUserChoice} imgSrc={scissorshand} dataId="scissors"  animation={true} />
                 </Link>
 
             </Box>
