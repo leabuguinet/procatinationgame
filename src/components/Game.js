@@ -47,7 +47,7 @@ const Game = ({ botChoice, userChoice, userScore, setUserScore, botScore, setBot
         } else if(botScore === 3){
             setGameResult(false);
         }
-    })
+    }, [userScore, botScore])
 
 
     if(userScore === 3 || botScore === 3 ){

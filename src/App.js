@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import Start from './components/Start';
 
 //Material UI imports
-import { createTheme, ThemeProvider, responsiveFontSizes, useTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import CssBaseline from "@mui/material/CssBaseline";
 import { yellow } from "@mui/material/colors";
 import { Box } from '@mui/system';

@@ -14,7 +14,7 @@ const Result = ({ userScore, setUserScore, botScore, setBotScore, statement, gam
     if(gameResult === true){
         resultText = "The cat has let you win the game! You have the right to procastinate and not to:";
         resetBotScore = botScore - botScore;
-        resetUserScore = botScore - 3;
+        resetUserScore = userScore - 3;
 
     } else {
         resultText = "The cat has defeated you. You have to:";
@@ -35,6 +35,7 @@ const Result = ({ userScore, setUserScore, botScore, setBotScore, statement, gam
             <Link to="/">
                 <Button variant="contained" size="large" sx={{
                     marginTop: '2rem',
+                    textDecoration: 'none',
                     }}
                     onClick={() => {
                         setBotScore(resetBotScore);

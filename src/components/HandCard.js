@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper } from '@mui/material';
 import { keyframes } from '@mui/system';
+import { useTheme } from '@mui/material/styles';
 
 
 //Images links
@@ -75,7 +76,8 @@ let cardHover = keyframes`
 
 
 const HandCard = ({ setUserChoice, dataId, animation }) => {
-
+    
+    const theme = useTheme();
     //Choice of the image source
     let imgSrc;
     let animationCard;
@@ -130,8 +132,10 @@ const HandCard = ({ setUserChoice, dataId, animation }) => {
             marginBottom: 1,
 
             "&:hover": {
-                animation: `${animationCard} 1s ease`
+              animation: {sm: 'none', md:`${animationCard} 1s ease` }
             },
+            
+            
 
 
             }}

@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import StartButton from './StartButton';
-import { makeStyles } from '@mui/styles'; 
 
-const useStyles = makeStyles({
-    fields: {
-        '&input': {
-            fontSize: 45,
-            marginTop: 30
-        }
-        
-    }
-})
-
-const Start = ({statement, setStatement, userScore, setUserScore, botScore, setBotScore}) => {
+const Start = ({ setStatement }) => {
 
  
     const theme = useTheme();
